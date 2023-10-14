@@ -14,6 +14,7 @@ public class AccountService {
     private final AccountRepositry accountRepositry;
 
     public List<Account> getAccount(){
+
         return accountRepositry.findAll();
     }
     public Optional<Account> getAccount(Integer id){

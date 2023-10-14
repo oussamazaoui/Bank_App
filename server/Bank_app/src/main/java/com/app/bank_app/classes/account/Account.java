@@ -1,13 +1,12 @@
 package com.app.bank_app.classes.account;
 
 import com.app.bank_app.classes.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
 import java.util.Date;
 
 @Data
@@ -48,11 +47,4 @@ public class Account {
 //    }
 
 
-    public Customer getCustomers() {
-        return customer;
-    }
-
-    public void setCustomers(Customer customers) {
-        this.customer = customer;
-    }
 }

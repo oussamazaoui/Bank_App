@@ -1,6 +1,7 @@
 package com.app.bank_app.classes.customer;
 
 import com.app.bank_app.classes.account.Account;
+import com.app.bank_app.classes.transaction.Transaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,16 +33,18 @@ public class Customer {
     private Integer age;
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
+    @OneToMany(mappedBy = "customer")
+    private List<Transaction> transactions;
 
-    public Customer(Integer id, String firstName, String lastName, String phoneNumber, LocalDate birthday, String id_Card) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.birthday = birthday;
-        this.id_Card = id_Card;
-
-    }
+//    public Customer(Integer id, String firstName, String lastName, String phoneNumber, LocalDate birthday, String id_Card) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phoneNumber = phoneNumber;
+//        this.birthday = birthday;
+//        this.id_Card = id_Card;
+//
+//    }
 
     public Integer getAge() {
         return Period.between(this.birthday,LocalDate.now()).getYears();
