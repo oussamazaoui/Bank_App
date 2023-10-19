@@ -14,4 +14,6 @@ public interface AccountRepositry extends JpaRepository<Account,Integer> {
    Optional<Account> findAccountByCustomerAndAccountName(Customer customer,String accountName);
     Optional<Account> findByAccountName( String accountName);
 
+
+
 }

@@ -1,6 +1,7 @@
 package com.app.bank_app.api.controllers;
 
 import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.ressources.CustomerDto;
 import com.app.bank_app.api.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

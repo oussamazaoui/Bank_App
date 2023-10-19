@@ -55,4 +55,7 @@ public class AccountService {
     public void Update(Account account){
         accountRepositry.save(account);
     }
+    public Optional<Account> getAccountByCustomerAndName(Customer customer,String name){
+        return accountRepositry.findAccountByCustomerAndAccountName(customer,name);
+    }
 }

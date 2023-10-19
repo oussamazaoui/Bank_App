@@ -14,19 +14,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PayementService {
-    @Autowired
-    private AccountRepositry accountRepositry;
-    @Autowired
-    private CustomerRepositry customerRepositry;
-    @Autowired
-    private PayementRepositry payementRepositry;
-    @Autowired
-    private DepositeService depositeService;
+    private final CustomerService customerService;
+    private final TransactionService transactionService;
+    private final AccountService accountService;
+    private final PayementRepositry payementRepositry;
+
+    public List<Payement> getAllPayements(){
+        return payementRepositry.findAll();
+    }
 
     public Integer payement(RequestPayement request) {
         Transaction transaction= Payement.
@@ -37,7 +38,7 @@ public class PayementService {
                 .accountName(request.getAccountName())
                 .accountNumber(request.getOtherAccountNum())
                 .reference(request.getReference())
-                .customer(customerRepositry.findById(request.getCustomer_id()).get())
+                .customer(customerService.getCustomer(request.getCustomer_id()).get())
                 .source(Source.online)
                 .build();
      if(isValid(request)){
@@ -45,45 +46,45 @@ public class PayementService {
              if(withdraw(request.getCustomer_id(), request.getAmount(),request.getAccountName())){
                  if(deposit(request.getOtherAccountNum(), request.getAmount())){
 
-                     payementRepositry.save(transaction);
+                     transactionService.newTransaction(transaction);
                      return 4;
                  }
                  transaction.setStatus(Status.failed);
-                 payementRepositry.save(transaction);
+                 transactionService.newTransaction(transaction);
                  return 3;
              }
              transaction.setStatus(Status.failed);
-             payementRepositry.save(transaction);
+             transactionService.newTransaction(transaction);
 
              return 2;
          }
          transaction.setStatus(Status.failed);
-         payementRepositry.save(transaction);
+         transactionService.newTransaction(transaction);
          return 1;
      }
         transaction.setStatus(Status.failed);
-        payementRepositry.save(transaction);
+        transactionService.newTransaction(transaction);
      return 0;
     }
 
     private boolean withdraw(Integer id,double amount,String accountName) {
 
-        Optional<Customer> customer=customerRepositry.findById(id);
-        Optional<Account> account=accountRepositry.findAccountByCustomerAndAccountName(customer.get(),accountName);
+        Optional<Customer> customer=customerService.getCustomer(id);
+        Optional<Account> account=accountService.getAccountByCustomerAndName(customer.get(),accountName);
         double newAmount=account.get().getBalance()-amount;
         if(amount>=0){
             account.get().setBalance(newAmount);
-            accountRepositry.save(account.get());
+            accountService.addNewAccount(account.get());
             return true;
         }
         return false;
     }
     private boolean deposit(Integer accountNum,double amount){
-        Optional<Account> account=accountRepositry.findAccountByAccountNumber(accountNum);
+        Optional<Account> account=accountService.getAccountByNumber(accountNum);
         double newAmount=account.get().getBalance()+amount;
         if(account.isPresent()){
             account.get().setBalance(newAmount);
-            accountRepositry.save(account.get());
+            accountService.addNewAccount(account.get());
             return true;
         }
         return false;
@@ -91,9 +92,9 @@ public class PayementService {
     }
 
     public boolean isOtherAccountExist(RequestPayement request){
-        Optional<Account> account=accountRepositry.findAccountByAccountNumber(request.getOtherAccountNum());
-        Optional<Customer> customer=customerRepositry.findById(request.getCustomer_id());
-        Optional<Account> myAccount=accountRepositry.findAccountByCustomerAndAccountName(customer.get(), request.getAccountName());
+        Optional<Account> account=accountService.getAccountByNumber(request.getOtherAccountNum());
+        Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
+        Optional<Account> myAccount=accountService.getAccountByCustomerAndName(customer.get(), request.getAccountName());
         if(account.isPresent() && account.get().getAccountNumber()!=myAccount.get().getAccountNumber()){
             return true;
         }

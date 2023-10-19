@@ -4,12 +4,14 @@ import com.app.bank_app.api.models.Account;
 import com.app.bank_app.api.models.Customer;
 import com.app.bank_app.api.enums.Status;
 import com.app.bank_app.api.models.Transaction;
+import com.app.bank_app.api.repositries.TransactionRepositry;
 import com.app.bank_app.api.request.RequestTransfer;
 import com.app.bank_app.api.models.Transfer;
 import com.app.bank_app.api.repositries.TransferRepositry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +21,8 @@ public class TransferService {
     private final TransferRepositry transferRepositry;
     private final AccountService accountService;
     private final CustomerService customerService;
+    private final TransactionService transactionService;
+
 
 
 
@@ -42,7 +46,7 @@ public class TransferService {
                         .amount(request.getAmount())
                         .status(Status.success)
                         .build();
-                transferRepositry.save(transaction);
+                transactionService.newTransaction(transaction);
                 return 2;
             }
             Transaction transaction=Transfer
@@ -53,7 +57,7 @@ public class TransferService {
                     .amount(request.getAmount())
                     .status(Status.failed)
                     .build();
-            transferRepositry.save(transaction);
+            transactionService.newTransaction(transaction);
             return 1;
         }
         return 0;

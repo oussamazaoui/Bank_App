@@ -6,6 +6,7 @@ import com.app.bank_app.api.models.Customer;
 import com.app.bank_app.api.repositries.CustomerRepositry;
 import com.app.bank_app.api.enums.Status;
 import com.app.bank_app.api.models.Transaction;
+import com.app.bank_app.api.repositries.DepositRepositry;
 import com.app.bank_app.api.request.RequestWithDraw;
 import com.app.bank_app.api.models.WithDraw;
 import com.app.bank_app.api.repositries.WithDrawRepositry;
@@ -18,19 +19,16 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class WithDrawService {
-    @Autowired
-    private WithDrawRepositry withDrawRepositry;
-    @Autowired
-    private AccountRepositry accountRepositry;
-    @Autowired
-    private CustomerRepositry customerRepositry;
+    private final CustomerService customerService;
+    private final AccountService accountService;
+    private final TransactionService transactionService;
     public boolean withDraw(RequestWithDraw request) {
         if(addTransaction(request)){
-            Optional<Customer> customer=customerRepositry.findById(request.getCustomer_id());
-            Optional<Account> account=accountRepositry.findAccountByCustomerAndAccountName(customer.get(),request.getAccountName());
+            Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
+            Optional<Account> account=accountService.getAccountByCustomerAndName(customer.get(),request.getAccountName());
             double amount=account.get().getBalance();
             account.get().setBalance(amount-request.getAmount());
-            accountRepositry.save(account.get());
+            accountService.addNewAccount(account.get());
             return true;
         }
         return false;
@@ -38,8 +36,8 @@ public class WithDrawService {
     public boolean addTransaction(RequestWithDraw request){
         if(requestIsValide(request)){
             if(isExist(request.getCustomer_id())){
-                Optional<Customer> customer=customerRepositry.findById(request.getCustomer_id());
-                Optional<Account> account=accountRepositry.findAccountByCustomerAndAccountName(customer.get(),request.getAccountName());
+                Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
+                Optional<Account> account=accountService.getAccountByCustomerAndName(customer.get(),request.getAccountName());
                 if(account.get().getBalance()-request.getAmount()>=0) {
                     Transaction transaction = WithDraw
                             .builder()
@@ -48,7 +46,7 @@ public class WithDrawService {
                             .amount(request.getAmount())
                             .status(Status.success)
                             .build();
-                    withDrawRepositry.save(transaction);
+                    transactionService.newTransaction(transaction);
                     return true;
                 }
                 else {
@@ -59,7 +57,7 @@ public class WithDrawService {
                             .amount(request.getAmount())
                             .status(Status.failed)
                             .build();
-                    withDrawRepositry.save(transaction);
+                    transactionService.newTransaction(transaction);
                     return false;
                 }
             }
@@ -70,7 +68,7 @@ public class WithDrawService {
         return request.getAmount()!=null && request.getAccountName()!=null && request.getCustomer_id()!=null;
     }
     public boolean isExist(Integer id){
-        if(customerRepositry.findById(id).isPresent()){
+        if(customerService.getCustomer(id).isPresent()){
             return true;
         }
         return false;

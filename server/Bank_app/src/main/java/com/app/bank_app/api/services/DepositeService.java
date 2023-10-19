@@ -1,37 +1,37 @@
 package com.app.bank_app.api.services;
 
 import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.repositries.AccountRepositry;
 import com.app.bank_app.api.models.Customer;
-import com.app.bank_app.api.repositries.CustomerRepositry;
 import com.app.bank_app.api.enums.Status;
 import com.app.bank_app.api.models.Transaction;
 import com.app.bank_app.api.models.Deposite;
-import com.app.bank_app.api.repositries.DespositeRepositry;
+import com.app.bank_app.api.repositries.DepositRepositry;
 import com.app.bank_app.api.request.RequestDeposit;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DepositeService {
-    @Autowired
-    private DespositeRepositry despositeRepositry;
-    @Autowired
-    private AccountRepositry accountRepositry;
-    @Autowired
-    private CustomerRepositry customerRepositry;
+   private final CustomerService customerService;
+   private final AccountService accountService;
+   private final DepositRepositry depositRepositry;
+   private final TransactionService transactionService;
+
+   public List<Deposite> getAllDeposit(){
+       return depositRepositry.findAll();
+   }
 
     public boolean deposit(RequestDeposit request){
         if(addTransaction(request)){
-            Optional<Customer> customer=customerRepositry.findById(request.getCustomer_id());
-            Optional<Account> account=accountRepositry.findAccountByCustomerAndAccountName(customer.get(),request.getAccountName());
+            Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
+            Optional<Account> account=accountService.getAccountByCustomerAndName(customer.get(),request.getAccountName());
             double amount=account.get().getBalance();
             account.get().setBalance(amount+ request.getAmount());
-            accountRepositry.save(account.get());
+            accountService.addNewAccount(account.get());
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public class DepositeService {
     public boolean addTransaction(RequestDeposit request){
         if(requestIsValide(request)){
             if(isExist(request.getCustomer_id())){
-                Optional<Customer> customer=customerRepositry.findById(request.getCustomer_id());
+                Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
                 if(request.getAmount()>0) {
                     Transaction transaction = Deposite
                             .builder()
@@ -48,7 +48,7 @@ public class DepositeService {
                             .amount(request.getAmount())
                             .status(Status.success)
                             .build();
-                    despositeRepositry.save(transaction);
+                    transactionService.newTransaction(transaction);
                     return true;
                 }
                 else {
@@ -59,7 +59,7 @@ public class DepositeService {
                             .amount(request.getAmount())
                             .status(Status.failed)
                             .build();
-                    despositeRepositry.save(transaction);
+                    transactionService.newTransaction(transaction);
                     return false;
                 }
             }
@@ -70,7 +70,7 @@ public class DepositeService {
         return request.getAmount()!=null && request.getAccountName()!=null && request.getCustomer_id()!=null;
     }
     public boolean isExist(Integer id){
-        if(customerRepositry.findById(id).isPresent()){
+        if(customerService.getCustomer(id).isPresent()){
             return true;
         }
         return false;
