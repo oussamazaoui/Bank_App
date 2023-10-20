@@ -3,14 +3,11 @@ package com.app.bank_app.api.controllers;
 import com.app.bank_app.api.models.Transaction;
 import com.app.bank_app.api.repositries.TransactionRepositry;
 import com.app.bank_app.api.response.RequestResponse;
-import com.app.bank_app.api.services.DepositeService;
+import com.app.bank_app.api.services.*;
 import com.app.bank_app.api.request.RequestDeposit;
-import com.app.bank_app.api.services.PayementService;
 import com.app.bank_app.api.request.RequestPayement;
 import com.app.bank_app.api.request.RequestTransfer;
-import com.app.bank_app.api.services.TransferService;
 import com.app.bank_app.api.request.RequestWithDraw;
-import com.app.bank_app.api.services.WithDrawService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +26,11 @@ public class TransactionController {
 
     private final WithDrawService withDrawService;
 
-    private final TransactionRepositry transactionRepositry;
+    private final TransactionService transactionService;
 
     @GetMapping
     public List<Transaction> getTransactions(){
-        return transactionRepositry.findAll();
+        return transactionService.getAllTransactions();
     }
 
     @PostMapping(path = "/deposit")

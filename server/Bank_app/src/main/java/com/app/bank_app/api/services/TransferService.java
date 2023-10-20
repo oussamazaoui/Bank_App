@@ -26,6 +26,9 @@ public class TransferService {
 
 
 
+    public List<Transfer> getAllTransfer(){
+        return transferRepositry.findAll();
+    }
     public Integer transfer(RequestTransfer request){
         if(requestIsValid(request)){
             Optional<Account> account=accountService.getAccountBynameAndCustomer(request.getAccountName(), request.getCustomer_id());
@@ -33,7 +36,7 @@ public class TransferService {
             Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
             double newAmount=account.get().getBalance()- request.getAmount();
             double newAmount1=otherAccount.get().getBalance()+ request.getAmount();
-            if(newAmount>=0) {
+            if(newAmount>=0 ) {
                 account.get().setBalance(newAmount);
                 accountService.Update(account.get());
                 otherAccount.get().setBalance(newAmount1);
@@ -63,6 +66,7 @@ public class TransferService {
         return 0;
     }
     public boolean requestIsValid(RequestTransfer request){
-        return request.getAccountName()!=null && request.getOtherAccountName()!=null&& request.getCustomer_id()!=null && request.getAmount()>0;
+        return request.getAccountName()!=null && request.getOtherAccountName()!=null&& request.getCustomer_id()!=null
+           && request.getAmount()>0 && !request.getAccountName().equals(request.getOtherAccountName());
     }
 }

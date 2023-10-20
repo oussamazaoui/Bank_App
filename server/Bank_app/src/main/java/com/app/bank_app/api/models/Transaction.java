@@ -2,6 +2,7 @@ package com.app.bank_app.api.models;
 
 import com.app.bank_app.api.enums.Source;
 import com.app.bank_app.api.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,7 @@ public abstract class Transaction {
     private Status status;
     @Enumerated(EnumType.STRING)
     private Source source;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

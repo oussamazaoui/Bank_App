@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,11 @@ public class WithDrawService {
     private final CustomerService customerService;
     private final AccountService accountService;
     private final TransactionService transactionService;
+    private final WithDrawRepositry withDrawRepositry;
+
+    public List<WithDraw> getAllWithDraw(){
+        return withDrawRepositry.findAll();
+    }
     public boolean withDraw(RequestWithDraw request) {
         if(addTransaction(request)){
             Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
