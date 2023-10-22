@@ -25,8 +25,9 @@ public class WithDrawService {
     private final TransactionService transactionService;
     private final WithDrawRepositry withDrawRepositry;
 
-    public List<WithDraw> getAllWithDraw(){
-        return withDrawRepositry.findAll();
+
+    public List<WithDraw> getAllWithDraw(Integer id){
+        return withDrawRepositry.findAllByCustomer_Id(id);
     }
     public boolean withDraw(RequestWithDraw request) {
         if(addTransaction(request)){

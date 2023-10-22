@@ -26,8 +26,8 @@ public class TransferService {
 
 
 
-    public List<Transfer> getAllTransfer(){
-        return transferRepositry.findAll();
+    public List<Transfer> getAllTransfer(Integer id){
+        return transferRepositry.findAllByCustomer_Id(id);
     }
     public Integer transfer(RequestTransfer request){
         if(requestIsValid(request)){

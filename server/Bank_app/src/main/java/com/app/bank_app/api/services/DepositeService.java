@@ -4,9 +4,10 @@ import com.app.bank_app.api.models.Account;
 import com.app.bank_app.api.models.Customer;
 import com.app.bank_app.api.enums.Status;
 import com.app.bank_app.api.models.Transaction;
-import com.app.bank_app.api.models.Deposite;
+import com.app.bank_app.api.models.Deposit;
 import com.app.bank_app.api.repositries.DepositRepositry;
 import com.app.bank_app.api.request.RequestDeposit;
+import com.app.bank_app.api.ressources.DepositDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class DepositeService {
    private final DepositRepositry depositRepositry;
    private final TransactionService transactionService;
 
-   public List<Deposite> getAllDeposit(){
-       return depositRepositry.findAll();
+   public List<Deposit> getAllDeposit(Integer id){
+       return depositRepositry.findAllByCustomer_Id(id);
    }
 
     public boolean deposit(RequestDeposit request){
@@ -41,7 +42,7 @@ public class DepositeService {
             if(isExist(request.getCustomer_id())){
                 Optional<Customer> customer=customerService.getCustomer(request.getCustomer_id());
                 if(request.getAmount()>0) {
-                    Transaction transaction = Deposite
+                    Transaction transaction = Deposit
                             .builder()
                             .customer(customer.get())
                             .accountName(request.getAccountName())
@@ -52,7 +53,7 @@ public class DepositeService {
                     return true;
                 }
                 else {
-                    Transaction transaction = Deposite
+                    Transaction transaction = Deposit
                             .builder()
                             .customer(customer.get())
                             .accountName(request.getAccountName())

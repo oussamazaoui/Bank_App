@@ -25,8 +25,8 @@ public class PayementService {
     private final AccountService accountService;
     private final PayementRepositry payementRepositry;
 
-    public List<Payement> getAllPayements(){
-        return payementRepositry.findAll();
+    public List<Payement> getAllPayements(Integer id){
+        return payementRepositry.findAllByCustomer_Id(id);
     }
 
     public Integer payement(RequestPayement request) {

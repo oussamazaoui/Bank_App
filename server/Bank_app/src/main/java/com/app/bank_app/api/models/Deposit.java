@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 @DiscriminatorValue("deposite")
-public class Deposite extends Transaction {
+public class Deposit extends Transaction {
     private String accountName;
 
 }
