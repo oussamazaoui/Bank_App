@@ -26,5 +26,8 @@ public class CustomerService {
         customerRepositry.findById(id).orElseThrow(()->new IllegalStateException("the customer not found with "+id));
         customerRepositry.deleteById(id);
     }
+    public Optional<Customer> getCustomerByEmail(String email){
+        return customerRepositry.findByemail(email);
+    }
 
 }
