@@ -60,6 +60,7 @@ public class JwtService {
     private Key getSigningKey() {
         byte[] keybyte= Decoders.BASE64.decode(this.key);
         return Keys.hmacShaKeyFor(keybyte);
+
     }
 
     public String extractemail(String jwt){

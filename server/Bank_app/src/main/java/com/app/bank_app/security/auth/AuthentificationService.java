@@ -24,6 +24,9 @@ public class AuthentificationService {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
+                .birthday(request.getBirthday())
+                .id_Card(request.getId_Card())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.user)
                 .build();
@@ -31,6 +34,7 @@ public class AuthentificationService {
         var jwt=jwtService.generateToken(user);
         return AuthentificationResponse.builder()
                 .token(jwt)
+                .id(customerService.getCustomerByEmail(request.getEmail()).get().getId())
                 .build();
     }
     public AuthentificationResponse login(LoginRequest request){
@@ -44,6 +48,7 @@ public class AuthentificationService {
         var jwt=jwtService.generateToken(user);
         return AuthentificationResponse.builder()
                 .token(jwt)
+                .id(user.getId())
                 .build();
     }
 }
