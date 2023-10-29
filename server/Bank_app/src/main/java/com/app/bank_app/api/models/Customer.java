@@ -1,6 +1,7 @@
 package com.app.bank_app.api.models;
 
-import com.app.bank_app.api.enums.Role;
+import com.app.bank_app.security.enums.Permission;
+import com.app.bank_app.security.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,7 +54,7 @@ public class Customer implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return role.getAuthorities();
     }
 
     @Override

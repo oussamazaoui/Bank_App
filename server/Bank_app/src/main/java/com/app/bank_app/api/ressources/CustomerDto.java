@@ -1,8 +1,7 @@
 package com.app.bank_app.api.ressources;
 
-import com.app.bank_app.api.enums.Role;
+import com.app.bank_app.security.enums.Role;
 import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.models.Customer;
 import com.app.bank_app.api.models.Transaction;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,7 @@
 package com.app.bank_app.security.auth;
 
-import com.app.bank_app.api.enums.Role;
+import com.app.bank_app.security.enums.Role;
 import com.app.bank_app.api.models.Customer;
-import com.app.bank_app.api.repositries.CustomerRepositry;
 import com.app.bank_app.api.services.CustomerService;
 import com.app.bank_app.security.config.JwtService;
 import lombok.RequiredArgsConstructor;
