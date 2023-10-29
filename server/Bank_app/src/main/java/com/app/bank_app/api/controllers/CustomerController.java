@@ -4,6 +4,7 @@ import com.app.bank_app.api.models.Customer;
 import com.app.bank_app.api.ressources.CustomerDto;
 import com.app.bank_app.api.services.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,9 +13,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/customer")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('admin')")
 public class CustomerController {
     private final CustomerService customerService;
+
     @GetMapping
+    @PreAuthorize("hasAuthority('customer:read')")
     public List<Customer> getCustomer(){
         return customerService.allCustomers();
 
