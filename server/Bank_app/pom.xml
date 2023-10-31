@@ -86,6 +86,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>
+			Bankapp
+		</finalName>
 	</build>
 
 </project>
