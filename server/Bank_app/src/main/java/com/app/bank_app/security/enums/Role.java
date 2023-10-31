@@ -15,8 +15,9 @@ public enum Role {
                     Permission.ACCOUNT_DELETE,
                     Permission.ACCOUNT_CREATE,
                     Permission.TRANSACTION_CREATE,
-                    Permission.TRANSACTION_READ,
                     Permission.ACCOUNT_READ,
+                    Permission.CUSTOMER_READ_MY_ACCOUNT,
+                    Permission.CUSTOMER_READ_PROFILE,
                     Permission.CUSTOMER_READ
             )
     ),
@@ -26,7 +27,9 @@ public enum Role {
                     Permission.ACCOUNT_READ,
                     Permission.CUSTOMER_READ,
                     Permission.CUSTOMER_DELETE,
-                    Permission.CUSTOMER_UPDATE
+                    Permission.CUSTOMER_UPDATE,
+                    Permission.CUSTOMER_READ_PROFILE,
+                    Permission.CUSTOMER_READ_MY_ACCOUNT
 
             )
     );

@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -20,6 +22,7 @@ import static com.app.bank_app.security.enums.Role.user;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtAuthentificationFilter jwtAuthentificationFilter;
@@ -30,7 +33,7 @@ public class SecurityConfig {
                .csrf(AbstractHttpConfigurer::disable)
                .authorizeHttpRequests(req->req.requestMatchers("api/auth/**")
                        .permitAll()
-//                       .requestMatchers("api/customer/**").hasAnyRole(admin.name())
+                       .requestMatchers("api/customer/**").hasRole(admin.name())
 //                       .requestMatchers(HttpMethod.GET, "api/customer/**").hasAuthority(CUSTOMER_READ.name())
 //                       .requestMatchers(HttpMethod.DELETE,"api/customer/**").hasAuthority(CUSTOMER_DELETE.name())
 //                       .requestMatchers(HttpMethod.POST,"api/customer/**").hasAuthority(CUSTOMER_CREATE.name())

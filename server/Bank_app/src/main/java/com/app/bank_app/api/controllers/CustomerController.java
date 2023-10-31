@@ -13,25 +13,29 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/customer")
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('admin')")
 public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('customer:read')")
+    @PreAuthorize("hasAuthority('CUSTOMER_READ')")
     public List<Customer> getCustomer(){
         return customerService.allCustomers();
 
     }
+
     @GetMapping(path = "/{customer_id}")
+    @PreAuthorize("hasAuthority('CUSTOMER_READ_PROFILE')")
     public Optional<Customer> getCustomer(@PathVariable("customer_id") Integer id){
         return customerService.getCustomer(id);
     }
+
     @PostMapping
+    @PreAuthorize("hasAuthority('CUSTOMER_CREATE')")
     public void registerNewCustomer(@RequestBody Customer customer){
         customerService.newCustomer(customer);
     }
     @DeleteMapping(path = "/{customer_id}")
+    @PreAuthorize("hasAuthority('CUSTOMER_DELETE')")
     public void deleteCustomer(@PathVariable("customer_id") Integer id){
         customerService.delete(id);
     }
