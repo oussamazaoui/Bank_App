@@ -1,6 +1,6 @@
 package com.app.bank_app.api.controllers;
 
-import com.app.bank_app.api.models.Transfer;
+import com.app.bank_app.api.entity.Transfer;
 import com.app.bank_app.api.services.TransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

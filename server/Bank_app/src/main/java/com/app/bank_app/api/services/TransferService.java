@@ -1,12 +1,11 @@
 package com.app.bank_app.api.services;
 
-import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.entity.Account;
+import com.app.bank_app.api.entity.Customer;
 import com.app.bank_app.api.enums.Status;
-import com.app.bank_app.api.models.Transaction;
-import com.app.bank_app.api.repositries.TransactionRepositry;
+import com.app.bank_app.api.entity.Transaction;
 import com.app.bank_app.api.request.RequestTransfer;
-import com.app.bank_app.api.models.Transfer;
+import com.app.bank_app.api.entity.Transfer;
 import com.app.bank_app.api.repositries.TransferRepositry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

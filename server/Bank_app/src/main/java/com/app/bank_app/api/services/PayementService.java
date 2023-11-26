@@ -1,17 +1,14 @@
 package com.app.bank_app.api.services;
 
-import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.repositries.AccountRepositry;
-import com.app.bank_app.api.models.Customer;
-import com.app.bank_app.api.repositries.CustomerRepositry;
+import com.app.bank_app.api.entity.Account;
+import com.app.bank_app.api.entity.Customer;
 import com.app.bank_app.api.enums.Source;
 import com.app.bank_app.api.enums.Status;
-import com.app.bank_app.api.models.Transaction;
-import com.app.bank_app.api.models.Payement;
+import com.app.bank_app.api.entity.Transaction;
+import com.app.bank_app.api.entity.Payement;
 import com.app.bank_app.api.repositries.PayementRepositry;
 import com.app.bank_app.api.request.RequestPayement;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

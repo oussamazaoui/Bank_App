@@ -1,7 +1,6 @@
 package com.app.bank_app.api.repositries;
 
-import com.app.bank_app.api.models.Transfer;
-import com.app.bank_app.api.models.WithDraw;
+import com.app.bank_app.api.entity.WithDraw;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

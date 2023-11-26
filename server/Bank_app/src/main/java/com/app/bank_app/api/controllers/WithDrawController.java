@@ -1,6 +1,6 @@
 package com.app.bank_app.api.controllers;
 
-import com.app.bank_app.api.models.WithDraw;
+import com.app.bank_app.api.entity.WithDraw;
 import com.app.bank_app.api.services.WithDrawService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

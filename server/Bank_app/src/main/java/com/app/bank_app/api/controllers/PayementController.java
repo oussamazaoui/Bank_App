@@ -1,6 +1,6 @@
 package com.app.bank_app.api.controllers;
 
-import com.app.bank_app.api.models.Payement;
+import com.app.bank_app.api.entity.Payement;
 import com.app.bank_app.api.services.PayementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

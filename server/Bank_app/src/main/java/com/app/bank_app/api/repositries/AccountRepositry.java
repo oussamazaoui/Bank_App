@@ -1,7 +1,7 @@
 package com.app.bank_app.api.repositries;
 
-import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.entity.Account;
+import com.app.bank_app.api.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

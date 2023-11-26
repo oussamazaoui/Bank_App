@@ -1,20 +1,16 @@
 package com.app.bank_app.api.controllers;
 
-import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.entity.Account;
+import com.app.bank_app.api.entity.Customer;
 import com.app.bank_app.api.request.AccountPostRequest;
-import com.app.bank_app.api.request.AccountWithCustomer;
-import com.app.bank_app.api.ressources.AccountRessource;
 import com.app.bank_app.api.services.CustomerService;
 import com.app.bank_app.api.response.RequestResponse;
 import com.app.bank_app.api.services.AccountService;
-import com.app.bank_app.security.enums.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

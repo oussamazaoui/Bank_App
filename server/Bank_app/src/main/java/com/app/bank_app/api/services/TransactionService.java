@@ -1,6 +1,6 @@
 package com.app.bank_app.api.services;
 
-import com.app.bank_app.api.models.Transaction;
+import com.app.bank_app.api.entity.Transaction;
 import com.app.bank_app.api.repositries.TransactionRepositry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

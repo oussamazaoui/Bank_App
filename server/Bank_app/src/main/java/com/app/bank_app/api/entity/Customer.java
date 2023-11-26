@@ -1,6 +1,5 @@
-package com.app.bank_app.api.models;
+package com.app.bank_app.api.entity;
 
-import com.app.bank_app.security.enums.Permission;
 import com.app.bank_app.security.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 

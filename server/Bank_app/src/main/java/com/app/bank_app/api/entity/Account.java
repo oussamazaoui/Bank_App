@@ -1,4 +1,4 @@
-package com.app.bank_app.api.models;
+package com.app.bank_app.api.entity;
 
 import com.app.bank_app.api.enums.AccountType;
 import com.fasterxml.jackson.annotation.JsonIgnore;

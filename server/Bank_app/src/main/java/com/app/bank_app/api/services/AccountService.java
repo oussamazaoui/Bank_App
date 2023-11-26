@@ -1,8 +1,8 @@
 package com.app.bank_app.api.services;
 
-import com.app.bank_app.api.models.Account;
+import com.app.bank_app.api.entity.Account;
 import com.app.bank_app.api.repositries.AccountRepositry;
-import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.entity.Customer;
 import com.app.bank_app.api.repositries.CustomerRepositry;
 import com.app.bank_app.api.response.RequestResponse;
 import lombok.RequiredArgsConstructor;

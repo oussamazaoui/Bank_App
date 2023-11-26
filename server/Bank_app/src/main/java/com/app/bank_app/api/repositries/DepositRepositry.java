@@ -1,7 +1,6 @@
 package com.app.bank_app.api.repositries;
 
-import com.app.bank_app.api.models.Deposit;
-import com.app.bank_app.api.ressources.DepositDto;
+import com.app.bank_app.api.entity.Deposit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

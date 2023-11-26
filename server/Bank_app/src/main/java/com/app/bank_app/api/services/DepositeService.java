@@ -1,13 +1,12 @@
 package com.app.bank_app.api.services;
 
-import com.app.bank_app.api.models.Account;
-import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.entity.Account;
+import com.app.bank_app.api.entity.Customer;
 import com.app.bank_app.api.enums.Status;
-import com.app.bank_app.api.models.Transaction;
-import com.app.bank_app.api.models.Deposit;
+import com.app.bank_app.api.entity.Transaction;
+import com.app.bank_app.api.entity.Deposit;
 import com.app.bank_app.api.repositries.DepositRepositry;
 import com.app.bank_app.api.request.RequestDeposit;
-import com.app.bank_app.api.ressources.DepositDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

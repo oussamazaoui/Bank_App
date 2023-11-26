@@ -1,4 +1,4 @@
-package com.app.bank_app.api.models;
+package com.app.bank_app.api.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,8 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@DiscriminatorValue("withdraw")
-public class WithDraw extends Transaction {
-    @Column(unique = true)
+@DiscriminatorValue("deposite")
+public class Deposit extends Transaction {
     private String accountName;
 
 }

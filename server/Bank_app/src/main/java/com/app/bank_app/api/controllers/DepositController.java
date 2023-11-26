@@ -1,7 +1,6 @@
 package com.app.bank_app.api.controllers;
 
-import com.app.bank_app.api.models.Deposit;
-import com.app.bank_app.api.ressources.DepositDto;
+import com.app.bank_app.api.entity.Deposit;
 import com.app.bank_app.api.services.DepositeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

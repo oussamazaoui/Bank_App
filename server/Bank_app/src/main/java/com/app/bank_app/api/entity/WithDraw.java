@@ -1,4 +1,4 @@
-package com.app.bank_app.api.models;
+package com.app.bank_app.api.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @SuperBuilder
-@DiscriminatorValue("payement")
-public class Payement extends Transaction {
-    private String beneficiary;
-    private Integer accountNumber;
+@DiscriminatorValue("withdraw")
+public class WithDraw extends Transaction {
     @Column(unique = true)
     private String accountName;
-    private String reference;
+
 }

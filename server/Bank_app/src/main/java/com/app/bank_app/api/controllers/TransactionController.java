@@ -1,7 +1,6 @@
 package com.app.bank_app.api.controllers;
 
-import com.app.bank_app.api.models.Transaction;
-import com.app.bank_app.api.repositries.TransactionRepositry;
+import com.app.bank_app.api.entity.Transaction;
 import com.app.bank_app.api.response.RequestResponse;
 import com.app.bank_app.api.services.*;
 import com.app.bank_app.api.request.RequestDeposit;

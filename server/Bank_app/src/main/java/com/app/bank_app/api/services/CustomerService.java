@@ -1,8 +1,7 @@
 package com.app.bank_app.api.services;
 
-import com.app.bank_app.api.models.Customer;
+import com.app.bank_app.api.entity.Customer;
 import com.app.bank_app.api.repositries.CustomerRepositry;
-import com.app.bank_app.api.ressources.CustomerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

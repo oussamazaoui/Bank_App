@@ -1,6 +1,6 @@
 package com.app.bank_app.api.repositries;
 
-import com.app.bank_app.api.models.Payement;
+import com.app.bank_app.api.entity.Payement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
