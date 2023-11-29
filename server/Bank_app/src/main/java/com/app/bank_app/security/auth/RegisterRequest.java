@@ -15,9 +15,13 @@ import java.time.LocalDate;
 public class RegisterRequest {
     private String firstName;
     private String lastName;
-    private String phoneNumber;
-    private LocalDate birthday;
     private String id_Card;
     private String email;
     private String password;
+
+    @Builder.Default
+    private LocalDate birthday = null; // Default value for birthday is the current date
+    @Builder.Default
+    private String phoneNumber=null;
+
 }

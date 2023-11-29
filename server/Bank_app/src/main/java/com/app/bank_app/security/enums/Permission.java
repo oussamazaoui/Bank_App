@@ -9,7 +9,7 @@ public enum Permission {
     ACCOUNT_DELETE("account:delete"),
     ACCOUNT_CREATE("account:create"),
     CUSTOMER_READ("customer:read"),
-    CUSTOMER_READ_PROFILE("customer:readProfile"),
+    CUSTOMER_READ_PROF("customer:readProfile"),
     CUSTOMER_READ_MY_ACCOUNT("account:readMyAccount"),
     CUSTOMER_UPDATE("customer:update"),
     CUSTOMER_CREATE("customer:create"),

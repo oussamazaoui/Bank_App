@@ -23,9 +23,9 @@ public class CustomerController {
     }
 
     @GetMapping(path = "/{customer_id}")
-    @PreAuthorize("hasAuthority('CUSTOMER_READ_PROFILE')")
-    public Optional<Customer> getCustomer(@PathVariable("customer_id") Integer id){
-        return customerService.getCustomer(id);
+    @PreAuthorize("hasAuthority('CUSTOMER_READ_PROF')")
+    public Customer getCustomer(@PathVariable("customer_id") Integer id){
+        return customerService.getCustomer(id).get();
     }
 
     @PostMapping

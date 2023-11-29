@@ -33,7 +33,7 @@ public class SecurityConfig {
                .csrf(AbstractHttpConfigurer::disable)
                .authorizeHttpRequests(req->req.requestMatchers("api/auth/**")
                        .permitAll()
-                       .requestMatchers("api/customer/**").hasRole(admin.name())
+                       .requestMatchers("api/customer/**").hasAnyRole(admin.name(), user.name())
 //                       .requestMatchers(HttpMethod.GET, "api/customer/**").hasAuthority(CUSTOMER_READ.name())
 //                       .requestMatchers(HttpMethod.DELETE,"api/customer/**").hasAuthority(CUSTOMER_DELETE.name())
 //                       .requestMatchers(HttpMethod.POST,"api/customer/**").hasAuthority(CUSTOMER_CREATE.name())

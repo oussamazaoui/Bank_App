@@ -17,7 +17,7 @@ public enum Role {
                     Permission.TRANSACTION_CREATE,
                     Permission.ACCOUNT_READ,
                     Permission.CUSTOMER_READ_MY_ACCOUNT,
-                    Permission.CUSTOMER_READ_PROFILE,
+                    Permission.CUSTOMER_READ_PROF,
                     Permission.CUSTOMER_READ
             )
     ),
@@ -28,7 +28,7 @@ public enum Role {
                     Permission.CUSTOMER_READ,
                     Permission.CUSTOMER_DELETE,
                     Permission.CUSTOMER_UPDATE,
-                    Permission.CUSTOMER_READ_PROFILE,
+                    Permission.CUSTOMER_READ_PROF,
                     Permission.CUSTOMER_READ_MY_ACCOUNT
 
             )
