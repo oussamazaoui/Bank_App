@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Login, LoginResponse, Register} from "../modules/login";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {ɵFormGroupValue, ɵTypedOrUntyped} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,19 @@ export class AuthService {
   basedUrl:String="http://localhost:8080/api/auth/"
   constructor(private http:HttpClient) {
   }
-  login(email:string,password:string):Observable<LoginResponse>{
+  login(userData:any):Observable<LoginResponse>{
     const loginUrl= `${this.basedUrl}login`;
-    const credentials = {email, password};
-    return this.http.post<LoginResponse>(loginUrl,credentials);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json', // Add this line
+    });
+    return this.http.post<LoginResponse>(loginUrl,userData,{headers});
   }
 
-  register(email:string,password:string,card_id:string,lastName:string,firstName:string){
-    const registerUrl=`${this.basedUrl}register`;
-    const info={email,password,card_id,lastName,firstName}
-    return this.http.post<LoginResponse>(registerUrl,info);
+  register(userData: any): Observable<LoginResponse> {
+    // Remove the confirm_password field if it exists
+    const {confirm_password, ...userDataWithoutConfirmPassword} = userData;
+
+    const registerUrl = `${this.basedUrl}register`;
+    return this.http.post<LoginResponse>(registerUrl, userDataWithoutConfirmPassword);
   }
 }

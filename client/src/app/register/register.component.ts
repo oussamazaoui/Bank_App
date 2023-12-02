@@ -1,72 +1,83 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {RequestParameter} from "@angular/cli/src/analytics/analytics-parameters";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
-  firstName: string = '';
-  lastName: string = '';
-  email: string = '';
-  id_card: string = '';
-  password: string = '';
-  confirm_password: string = '';
+export class RegisterComponent implements OnInit{
   errorMessages: { [key: string]: string } = {};
 
-  constructor(private service: AuthService,private router:Router) {
+  constructor(private service: AuthService,private router:Router,private builder:FormBuilder,private toasters:ToastrService) {
+  }
+
+  public register_form !: FormGroup;
+
+  ngOnInit() {
+  this.register_form=this.builder.group({
+    firstName:this.builder.control('',Validators.required),
+    lastName:this.builder.control('',Validators.required),
+    email:this.builder.control('',Validators.compose([Validators.required,Validators.email])),
+    id_Card:this.builder.control('',Validators.compose([Validators.required,Validators.maxLength(8)])),
+    password:this.builder.control('',Validators.compose([Validators.required,Validators.minLength(8)])),
+    confirm_password:this.builder.control('',Validators.compose([Validators.required,Validators.minLength(8)]))
+  });
   }
 
   onRegister() {
+    console.log(this.register_form.controls);
     this.errorMessages = {}; // Reset error messages
-
-    if (!this.firstName.trim()) {
-      this.errorMessages['firstName'] = 'First Name is required';
-    }
-
-    if (!this.lastName.trim()) {
-      this.errorMessages['lastName'] = 'Last Name is required';
-    }
-
-    if (!this.email.trim()) {
-      this.errorMessages['email'] = 'Email is required';
-    }
-
-    if (!this.id_card.trim()) {
-      this.errorMessages['id_card'] = 'ID Card is required';
-    }
-
-    if (!this.password.trim()) {
-      this.errorMessages['password'] = 'Password is required';
-    }
-
-    if (!this.confirm_password.trim()) {
-      this.errorMessages['confirm_password'] = 'Confirm Password is required';
-    }
-
-    if (this.password !== this.confirm_password) {
+    // Object.keys(this.register_form.controls).forEach(field => {
+    //   const control = this.register_form.get(field);
+    //   if (control && (control.value.trim() === '' || (control.touched && control.invalid))) {
+    //     this.errorMessages[field] = `${field} is required`;
+    //   }
+    // });
+    if (this.register_form.get('password')?.value?.trim() !== this.register_form.get('confirm_password')?.value?.trim() && (this.register_form.get('password')?.value?.length>0 &&  this.register_form.get('confirm_password')?.value?.length>0)) {
       this.errorMessages['equal'] = 'Passwords do not match';
     }
-    if (Object.keys(this.errorMessages).length === 0) {
+    if (this.register_form.valid) {
       this.service
-        .register(this.email, this.password, this.id_card, this.lastName, this.firstName)
+        .register(this.register_form.value)
         .subscribe(
           (response) => {
             console.log(response);
+            this.toasters.success("Registered successfully ")
             this.router.navigate(['/login'],{ queryParams: { registrationSuccess: true } });
           },
-          (error) => {
-            console.log(error);
+          (error)=>{
+            console.error(error);
+            this.toasters.error("Registration failed");
           }
         );
 
     }
-
-
   }
+  get FirstName():FormControl{
+    return this.register_form.get('firstName') as FormControl;
+  }
+  get LastName():FormControl{
+    return this.register_form.get('lastName') as FormControl;
+  }
+  get Email():FormControl{
+    return this.register_form.get('email') as FormControl;
+  }
+  get Password():FormControl{
+    return this.register_form.get('password') as FormControl;
+  }
+  get Confirm_Password():FormControl{
+    return this.register_form.get('confirm_password') as FormControl;
+  }
+  get Id_Card():FormControl{
+    return this.register_form.get('id_Card') as FormControl;
+  }
+
+
 }
 
 
