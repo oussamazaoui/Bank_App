@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
-import {LoginResponse} from "../modules/login";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -15,7 +14,7 @@ export class LoginComponent implements OnInit{
   id:number=0;
   registrationSuccess: boolean = false;
 
-  constructor(private service:AuthService, private route: ActivatedRoute, private builder:FormBuilder) {
+  constructor(private service:AuthService, private route: ActivatedRoute, private builder:FormBuilder,private router:Router) {
  }
  ngOnInit() {
    this.route.queryParams.subscribe((params) => {
@@ -34,6 +33,10 @@ export class LoginComponent implements OnInit{
         console.log(response);
         this.token=response.token;
         this.id=response.id;
+        if(this.id==1)
+          this.router.navigate(['admin']);
+        else
+          this.router.navigate(['user']);
         },
       (error)=>{console.error('Login error', error);}
     )

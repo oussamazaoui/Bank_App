@@ -26,7 +26,7 @@ public class CustomerService {
         customerRepositry.deleteById(id);
     }
     public Optional<Customer> getCustomerByEmail(String email){
-        return customerRepositry.findByemail(email);
+        return customerRepositry.findByEmail(email);
     }
 
 }

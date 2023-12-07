@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Login, LoginResponse, Register} from "../modules/login";
+import {Login, LoginResponse, Register} from "../classes/login";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ɵFormGroupValue, ɵTypedOrUntyped} from "@angular/forms";
@@ -8,7 +8,7 @@ import {ɵFormGroupValue, ɵTypedOrUntyped} from "@angular/forms";
   providedIn: 'root'
 })
 export class AuthService {
-  basedUrl:String="http://localhost:8080/api/auth/"
+  basedUrl:String="http://localhost:8090/api/auth/"
   constructor(private http:HttpClient) {
   }
   login(userData:any):Observable<LoginResponse>{

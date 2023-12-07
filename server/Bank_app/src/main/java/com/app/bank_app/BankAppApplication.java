@@ -1,6 +1,8 @@
 package com.app.bank_app;
 
+import com.app.bank_app.api.services.CustomerService;
 import com.app.bank_app.security.auth.AuthentificationService;
+import com.app.bank_app.security.auth.LoginRequest;
 import com.app.bank_app.security.auth.RegisterRequest;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +22,8 @@ public class BankAppApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(
-		AuthentificationService authentificationService
+		AuthentificationService authentificationService,
+		CustomerService customerService
 	){
 	return args -> {
 		authentificationService.register(
@@ -29,12 +32,13 @@ public class BankAppApplication {
 						.lastName("zaoui")
 						.birthday(LocalDate.of(2002,05,21))
 						.email("oussama@gmail.com")
-						.id_Card("UB107427")
+						.id_Card("UB1074")
 						.phoneNumber("0615356028")
 						.password("oussama")
 						.build()
 
 		);
+      System.out.println(customerService.getCustomerByEmail("oussama@gmail.com"));
 	};
 
 	}

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
-import {RequestParameter} from "@angular/cli/src/analytics/analytics-parameters";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 
@@ -47,7 +46,8 @@ export class RegisterComponent implements OnInit{
         .subscribe(
           (response) => {
             console.log(response);
-            this.toasters.success("Registered successfully ")
+
+            // this.toasters.success("Registered successfully ")
             this.router.navigate(['/login'],{ queryParams: { registrationSuccess: true } });
           },
           (error)=>{

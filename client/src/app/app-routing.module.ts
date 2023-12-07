@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
+import {HomeComponent} from "./home/home.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'account',component:DashboardComponent}
+  {path:'home',component:HomeComponent},
+  {path:'admin',loadChildren:()=>import("./modules/admin/admin.module").then((m)=>m.AdminModule)},
+  {path:'user',loadChildren:()=>import("./modules/user/user.module").then((m)=>m.UserModule)},
+  {path:'',redirectTo:'home',pathMatch:"full"},
+  {path:'**',component:NotFoundComponent}
 ];
 
 @NgModule({

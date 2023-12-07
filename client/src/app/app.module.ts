@@ -12,10 +12,11 @@ import { RegisterComponent } from './register/register.component';
 import { HeroComponent } from './hero/hero.component';
 import { FeatureComponent } from './feature/feature.component';
 import { TeamComponent } from './team/team.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -27,20 +28,25 @@ import {ToastrModule} from "ngx-toastr";
     HeroComponent,
     FeatureComponent,
     TeamComponent,
-    SidebarComponent,
-    DashboardComponent
+    NotFoundComponent,
+    HomeComponent,
+
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-       BrowserAnimationsModule, // Add this line
-       ToastrModule.forRoot(),
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // Add this line
+    ToastrModule.forRoot(),
+  ],
   providers: [
     provideClientHydration()
+  ],
+  exports: [
+
+
   ],
   bootstrap: [AppComponent]
 })
