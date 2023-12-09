@@ -5,13 +5,15 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardsComponent } from './components/admin-dashboards/admin-dashboards.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { RecentUsersComponent } from './components/recent-transactions/recent-users.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardsComponent,
     SidebarComponent,
-    CardsComponent
+    CardsComponent,
+    RecentUsersComponent
   ],
   exports: [
     SidebarComponent

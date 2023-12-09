@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthServiceService} from "../services/auth-service.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit{
   id:number=0;
   registrationSuccess: boolean = false;
 
-  constructor(private service:AuthService, private route: ActivatedRoute, private builder:FormBuilder,private router:Router) {
+  constructor(private service:AuthService, private route: ActivatedRoute, private builder:FormBuilder,private router:Router,private userhservice:AuthServiceService) {
  }
  ngOnInit() {
    this.route.queryParams.subscribe((params) => {
@@ -31,10 +32,11 @@ export class LoginComponent implements OnInit{
     this.service.login(this.login_form.value).subscribe(
       (response)=>{
         console.log(response);
-        this.token=response.token;
-        this.id=response.id;
-        if(this.id==1)
+        this.userhservice.setToken(response.token);
+        this.userhservice.setId(response.id);
+        if(response.id==1) {
           this.router.navigate(['admin']);
+        }
         else
           this.router.navigate(['user']);
         },

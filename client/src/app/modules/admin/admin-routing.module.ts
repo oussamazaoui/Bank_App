@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AdminDashboardsComponent} from "./components/admin-dashboards/admin-dashboards.component";
 import {CardsComponent} from "./components/cards/cards.component";
+import {authGuardGuard} from "../../Guards/auth-guard.guard";
 
 const routes: Routes = [
   {path:'',component:AdminDashboardsComponent,children:[
