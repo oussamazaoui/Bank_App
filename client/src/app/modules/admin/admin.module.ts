@@ -6,6 +6,7 @@ import { AdminDashboardsComponent } from './components/admin-dashboards/admin-da
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { RecentUsersComponent } from './components/recent-transactions/recent-users.component';
+import { OverviewComponent } from './components/overview/overview.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RecentUsersComponent } from './components/recent-transactions/recent-us
     AdminDashboardsComponent,
     SidebarComponent,
     CardsComponent,
-    RecentUsersComponent
+    RecentUsersComponent,
+    OverviewComponent
   ],
   exports: [
     SidebarComponent

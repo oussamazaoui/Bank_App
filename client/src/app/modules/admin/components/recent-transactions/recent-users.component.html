@@ -1,78 +1,178 @@
-<div class="grid lg:grid-cols-[60%,1fr]  grid-cols-1 gap-6 ">
-  <div class="pt-4 bg-white rounded shadow dark:text-gray-100 dark:bg-gray-900">
-    <div class="flex px-6 pb-4 border-b dark:border-gray-700">
-      <h2 class="text-xl font-bold dark:text-gray-400">Transaction</h2>
+<div class="flex justify-end w-full pt-6 px-4">
+<div class=" bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+  <div class="mb-4 flex items-center justify-between">
+    <div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">Latest Transactions</h3>
+      <span class="text-base font-normal text-gray-500">This is a list of latest transactions</span>
     </div>
-    <div class="p-4 overflow-x-auto">
-      <table class="w-full table-auto">
-        <thead>
-        <tr class="text-xs text-left text-gray-500 dark:text-gray-400">
-          <th class="px-6 pb-3 font-medium">Transaction ID</th>
-          <th class="px-6 pb-3 font-medium ">Date </th>
-          <th class="px-6 pb-3 font-medium">Email </th>
-          <th class="px-6 pb-3 font-medium">Status </th>
-          <th class="px-6 pb-3 font-medium"> </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="text-xs bg-gray-100 dark:text-gray-400 dark:bg-transparent">
-          <td class="px-6 py-5 font-medium">018276td45</td>
-          <td class="px-6 py-5 font-medium ">08.4.2021</td>
-          <td class="px-6 py-5 font-medium ">abc@gmail.com</td>
-          <td>
-                                                <span
-                                                  class="inline-block px-2 py-1 text-center text-green-600 bg-green-100 rounded-full dark:text-green-700 dark:bg-green-200">Completed</span>
-          </td>
-          <td class="px-6 py-5 ">
-            <a href="#"
-               class="px-4 py-2 font-medium text-blue-500 border border-blue-500 rounded-md dark:text-blue-300 dark:border-blue-300 dark:hover:bg-blue-300 dark:hover:text-gray-700 hover:text-gray-100 hover:bg-blue-500">Edit
-            </a>
-          </td>
-        </tr>
-        <tr class="text-xs dark:text-gray-400">
-          <td class="px-6 py-5 font-medium">018276td45</td>
-          <td class="px-6 py-5 font-medium ">08.4.2021</td>
-          <td class="px-6 py-5 font-medium ">abc@gmail.com</td>
-          <td>
-                                                <span
-                                                  class="inline-block px-2 py-1 text-center text-yellow-600 bg-yellow-100 rounded-full dark:text-yellow-700 dark:bg-yellow-200">Pending</span>
-          </td>
-          <td class="px-6 py-5 ">
-            <a href="#"
-               class="px-4 py-2 font-medium text-blue-500 border border-blue-500 rounded-md dark:text-blue-300 dark:border-blue-300 dark:hover:bg-blue-300 dark:hover:text-gray-700 hover:text-gray-100 hover:bg-blue-500">Edit
-            </a>
-          </td>
-        </tr>
-        <tr class="text-xs bg-gray-100 dark:bg-transparent dark:text-gray-400">
-          <td class="px-6 py-5 font-medium">018276td45</td>
-          <td class="px-6 py-5 font-medium ">08.4.2021</td>
-          <td class="px-6 py-5 font-medium ">abc@gmail.com</td>
-          <td>
-                                                <span
-                                                  class="inline-block px-2 py-1 text-center text-green-600 bg-green-100 rounded-full dark:text-green-700 dark:bg-green-200">Completed</span>
-          </td>
-          <td class="px-6 py-5 ">
-            <a href="#"
-               class="px-4 py-2 font-medium text-blue-500 border border-blue-500 rounded-md dark:text-blue-300 dark:border-blue-300 dark:hover:bg-blue-300 dark:hover:text-gray-700 hover:text-gray-100 hover:bg-blue-500">Edit
-            </a>
-          </td>
-        </tr>
-        <tr class="text-xs dark:text-gray-400">
-          <td class="px-6 py-5 font-medium">018276td45</td>
-          <td class="px-6 py-5 font-medium ">08.4.2021</td>
-          <td class="px-6 py-5 font-medium ">abc@gmail.com</td>
-          <td>
-                                                <span
-                                                  class="inline-block px-2 py-1 text-center text-red-600 bg-red-100 rounded-full dark:text-red-700 dark:bg-red-200">
-                                                    Cancelled</span>
-          </td>
-          <td class="px-6 py-5 ">
-            <a href="#"
-               class="px-4 py-2 font-medium text-blue-500 border border-blue-500 rounded-md dark:text-blue-300 dark:border-blue-300 dark:hover:bg-blue-300 dark:hover:text-gray-700 hover:text-gray-100 hover:bg-blue-500">Edit
-            </a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="flex-shrink-0">
+      <a href="#" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</a>
     </div>
   </div>
+  <div class="flex flex-col mt-8">
+  <div class="overflow-x-auto rounded-lg">
+    <div class="align-middle inline-block min-w-full">
+      <div class="shadow overflow-hidden sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Transaction
+            </th>
+            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Date & Time
+            </th>
+            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Amount
+            </th>
+          </tr>
+          </thead>
+          <tbody class="bg-white">
+          <tr>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+              Payment from <span class="font-semibold">Bonnie Green</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 23 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              $2300
+            </td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+              Payment refund to <span class="font-semibold">#00910</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 23 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              -$670
+            </td>
+          </tr>
+          <tr>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+              Payment failed from <span class="font-semibold">#087651</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 18 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              $234
+            </td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+              Payment from <span class="font-semibold">Lana Byrd</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 15 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              $5000
+            </td>
+          </tr>
+          <tr>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+              Payment from <span class="font-semibold">Jese Leos</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 15 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              $2300
+            </td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
+              Payment from <span class="font-semibold">THEMESBERG LLC</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 11 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              $560
+            </td>
+          </tr>
+
+          <tr>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+              Payment from <span class="font-semibold">Lana Lysle</span>
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+              Apr 6 ,2021
+            </td>
+            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+              $1437
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!--<div class="flex w-full bg-gray-100 flex-row justify-center">-->
+<!--<section class="px-6 py-6">-->
+<!--  <div class="grid lg:grid-cols-[100%,1fr]  grid-cols-2 gap-6 ">-->
+<!--    <div class="pt-4 bg-white rounded shadow dark:text-gray-100 dark:bg-gray-900">-->
+<!--      <div class="px-6 pb-4 border-b dark:border-gray-700">-->
+<!--        <h2 class="text-xl font-bold dark:text-gray-400">Transaction</h2>-->
+<!--      </div>-->
+<!--      <div class="p-4 overflow-x-auto">-->
+<!--        <table class="w-full table-auto">-->
+<!--          <thead>-->
+<!--          <tr class="text-xs text-left text-gray-500 dark:text-gray-400">-->
+<!--            <th class="px-6 pb-3 font-medium">Transaction ID</th>-->
+<!--            <th class="px-6 pb-3 font-medium ">Date </th>-->
+<!--            <th class="px-6 pb-3 font-medium">Email </th>-->
+<!--            <th class="px-6 pb-3 font-medium">Status </th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr class="text-xs bg-gray-100 dark:text-gray-400 dark:bg-transparent">-->
+<!--            <td class="px-6 py-5 font-medium">018276td45</td>-->
+<!--            <td class="px-6 py-5 font-medium ">08.4.2021</td>-->
+<!--            <td class="px-6 py-5 font-medium ">abcgmail.com</td>-->
+<!--            <td>-->
+<!--                                                <span-->
+<!--                                                  class="inline-block px-2 py-1 text-center text-green-600 bg-green-100 rounded-full dark:text-green-700 dark:bg-green-200">Completed</span>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr class="text-xs dark:text-gray-400">-->
+<!--            <td class="px-6 py-5 font-medium">018276td45</td>-->
+<!--            <td class="px-6 py-5 font-medium ">08.4.2021</td>-->
+<!--            <td class="px-6 py-5 font-medium ">abcgmail.com</td>-->
+<!--            <td>-->
+<!--                                                <span-->
+<!--                                                  class="inline-block px-2 py-1 text-center text-yellow-600 bg-yellow-100 rounded-full dark:text-yellow-700 dark:bg-yellow-200">Pending</span>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr class="text-xs bg-gray-100 dark:bg-transparent dark:text-gray-400">-->
+<!--            <td class="px-6 py-5 font-medium">018276td45</td>-->
+<!--            <td class="px-6 py-5 font-medium ">08.4.2021</td>-->
+<!--            <td class="px-6 py-5 font-medium ">abcgmail.com</td>-->
+<!--            <td>-->
+<!--                                                <span-->
+<!--                                                  class="inline-block px-2 py-1 text-center text-green-600 bg-green-100 rounded-full dark:text-green-700 dark:bg-green-200">Completed</span>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr class="text-xs dark:text-gray-400">-->
+<!--            <td class="px-6 py-5 font-medium">018276td45</td>-->
+<!--            <td class="px-6 py-5 font-medium ">08.4.2021</td>-->
+<!--            <td class="px-6 py-5 font-medium ">abcgmail.com</td>-->
+<!--            <td>-->
+<!--                                                <span-->
+<!--                                                  class="inline-block px-2 py-1 text-center text-red-600 bg-red-100 rounded-full dark:text-red-700 dark:bg-red-200">-->
+<!--                                                    Cancelled</span>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--</div>-->
