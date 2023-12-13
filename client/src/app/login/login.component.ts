@@ -3,6 +3,7 @@ import {AuthService} from "../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthServiceService} from "../services/auth-service.service";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit{
   id:number=0;
   registrationSuccess: boolean = false;
 
-  constructor(private service:AuthService, private route: ActivatedRoute, private builder:FormBuilder,private router:Router,private userhservice:AuthServiceService) {
+  constructor(private service:AuthService, private route: ActivatedRoute, private builder:FormBuilder,private router:Router,private userhservice:AuthServiceService,private toast:NgToastService) {
  }
  ngOnInit() {
    this.route.queryParams.subscribe((params) => {
@@ -30,19 +31,27 @@ export class LoginComponent implements OnInit{
   onLoging() {
     console.log(this.login_form.value);
     this.service.login(this.login_form.value).subscribe(
-      (response)=>{
+      (response)=> {
         console.log(response);
+
         this.userhservice.setToken(response.token);
         this.userhservice.setId(response.id);
-        if(response.id==1) {
-          this.router.navigate(['admin']);
-        }
-        else
+        if (response.id == 1) {
+          this.toast.success({detail: "Success message", summary: "Login is Success", duration: 5000});
+          this.router.navigate(['admin/dashboard']);
+        } else {
+          this.toast.success({detail: "Success message", summary: "Login is Success", duration: 5000});
           this.router.navigate(['user']);
-        },
-      (error)=>{console.error('Login error', error);}
+        }
+      },
+      (error)=>{
+        console.error('Login error', error);
+        this.toast.error({detail:"Error message",summary:"Login is failed",duration:15000});
+      }
     )
-  }
+      }
+
+
   get Password():FormControl{
     return this.login_form.get('password') as FormControl;
   }

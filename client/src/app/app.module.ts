@@ -16,6 +16,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import {NgToastModule} from "ng-angular-popup";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     BrowserAnimationsModule, // Add this line
     ToastrModule.forRoot(),
+    NgToastModule
   ],
   providers: [
     provideClientHydration()
